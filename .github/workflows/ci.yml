@@ -61,9 +61,9 @@ jobs:
 
       - name: Install kustomize
         if: steps.changes.outputs.deploy == 'true'
-        uses: imranismail/setup-kustomize@v3
-        with:
-          kustomize-version: '5.8.1'
+        run: |
+          curl -sL "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.8.1/kustomize_v5.8.1_linux_amd64.tar.gz" | tar -xz
+          sudo mv kustomize /usr/local/bin/
 
       - name: Validate kustomize overlays
         if: steps.changes.outputs.deploy == 'true'
